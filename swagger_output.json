@@ -23,75 +23,22 @@
     },
     "/hospitales/": {
       "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/hospitales/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+        "tags": [
+          "Hospitales"
         ],
+        "summary": "Obtiene la lista de hospitales",
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
           }
         }
       },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/hospitales/new": {
       "post": {
+        "tags": [
+          "Hospitales"
+        ],
+        "summary": "Agrega un nuevo hospital",
         "description": "",
         "parameters": [
           {
@@ -114,8 +61,85 @@
         }
       }
     },
+    "/hospitales/{id}": {
+      "get": {
+        "tags": [
+          "Hospitales"
+        ],
+        "summary": "Obtiene un hospital por ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del hospital"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Hospitales"
+        ],
+        "summary": "Actualiza un hospital existente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del hospital"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Hospitales"
+        ],
+        "summary": "Elimina un hospital",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del hospital"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/usuarios/register": {
       "post": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -149,6 +173,9 @@
     },
     "/usuarios/login": {
       "post": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -179,6 +206,9 @@
     },
     "/usuarios/change-password": {
       "post": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -212,6 +242,9 @@
     },
     "/usuarios/forgot-password": {
       "post": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -239,6 +272,9 @@
     },
     "/usuarios/enable-user": {
       "post": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {
@@ -266,6 +302,9 @@
     },
     "/usuarios/disable-user": {
       "post": {
+        "tags": [
+          "Usuarios"
+        ],
         "description": "",
         "parameters": [
           {

@@ -4,11 +4,11 @@ let hospitales = [
   { id: 3, nombre: 'Hospital Sur', direccion: 'Boulevard Principal 789' }
 ];
 
-const getHospitales = (req, res) => {
+exports.getHospitales = (req, res) => {
   res.json(hospitales);
 };
 
-const getHospitalById = (req, res) => {
+exports.getHospitalById = (req, res) => {
   const { id } = req.params;
   const hospital = hospitales.find(h => h.id == id);
   if (hospital) {
@@ -18,14 +18,14 @@ const getHospitalById = (req, res) => {
   }
 };
 
-const createHospital = (req, res) => {
+exports.createHospital = (req, res) => {
   const newHospital = req.body;
   newHospital.id = hospitales.length ? hospitales[hospitales.length - 1].id + 1 : 1;
   hospitales.push(newHospital);
   res.status(201).json(newHospital);
 };
 
-const updateHospital = (req, res) => {
+exports.updateHospital = (req, res) => {
   const { id } = req.params;
   const updatedHospital = req.body;
   const hospitalIndex = hospitales.findIndex(h => h.id == id);
@@ -37,7 +37,7 @@ const updateHospital = (req, res) => {
   }
 };
 
-const deleteHospital = (req, res) => {
+exports.deleteHospital = (req, res) => {
   const { id } = req.params;
   const hospitalIndex = hospitales.findIndex(h => h.id == id);
   if (hospitalIndex !== -1) {
@@ -46,12 +46,4 @@ const deleteHospital = (req, res) => {
   } else {
     res.status(404).json({ message: 'Hospital no encontrado' });
   }
-};
-
-module.exports = {
-  getHospitales,
-  getHospitalById,
-  createHospital,
-  updateHospital,
-  deleteHospital,
 };
