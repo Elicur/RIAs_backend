@@ -17,9 +17,15 @@ const doc = {
       id: 1,
       email: "user@example.com",
       password: "password123",
-      telefono: "123456789",
       role: "USER",
+      telefono: "123456789",
       enabled: true
+    },
+    RegisterUser: {
+      email: "user@example.com",
+      password: "password123",
+      role: "USER",
+      telefono: "123456789",
     },
     Login: {
       email: "user@example.com",
@@ -36,7 +42,7 @@ const doc = {
     EnableDisableUser: {
       id: 1,
     },
-  },
+  }
 };
 
 const outputFile = './swagger_output.json';

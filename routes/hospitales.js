@@ -18,14 +18,11 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   /* #swagger.summary = 'Agrega un nuevo hospital' */
   /* #swagger.tags = ['Hospitales'] */
-  /* #swagger.body = {
-        required: true,
-        content: {
-          'application/json': {
-            schema: { $ref: '#/definitions/Hospital' }
-          }
-        }
-  } */
+  /* #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Add new user.',
+        schema: { $ref: '#/definitions/Hospital' }
+    } */
   hospitalesController.createHospital(req, res);
 });
 
@@ -33,14 +30,11 @@ router.put('/:id', (req, res) => {
   /* #swagger.summary = 'Actualiza un hospital existente' */
   /* #swagger.tags = ['Hospitales'] */
   /* #swagger.parameters['id'] = { description: 'ID del hospital', type: 'integer', required: true } */
-  /* #swagger.body = {
-        required: true,
-        content: {
-          'application/json': {
-            schema: { $ref: '#/definitions/Hospital' }
-          }
-        }
-  } */
+  /* #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Add new user.',
+        schema: { $ref: '#/definitions/Hospital' }
+    } */
   hospitalesController.updateHospital(req, res);
 });
 

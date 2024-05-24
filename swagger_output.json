@@ -44,13 +44,9 @@
           {
             "name": "body",
             "in": "body",
+            "description": "Add new user.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/Hospital"
             }
           }
         ],
@@ -99,6 +95,14 @@
             "required": true,
             "type": "integer",
             "description": "ID del hospital"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add new user.",
+            "schema": {
+              "$ref": "#/definitions/Hospital"
+            }
           }
         ],
         "responses": {
@@ -140,27 +144,15 @@
         "tags": [
           "Usuarios"
         ],
+        "summary": "Registra un nuevo usuario",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Registro de nuevo usuario.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                },
-                "role": {
-                  "example": "any"
-                },
-                "telefono": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/RegisterUser"
             }
           }
         ],
@@ -176,21 +168,15 @@
         "tags": [
           "Usuarios"
         ],
+        "summary": "Inicia sesión",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Credenciales de usuario.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/Login"
             }
           }
         ],
@@ -209,24 +195,15 @@
         "tags": [
           "Usuarios"
         ],
+        "summary": "Cambia la contraseña del usuario",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Cambio de contraseña de usuario.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "example": "any"
-                },
-                "oldPassword": {
-                  "example": "any"
-                },
-                "newPassword": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/ChangePassword"
             }
           }
         ],
@@ -245,18 +222,15 @@
         "tags": [
           "Usuarios"
         ],
+        "summary": "Recupera la contraseña olvidada",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Recuperación de contraseña de usuario.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/ForgotPassword"
             }
           }
         ],
@@ -275,18 +249,15 @@
         "tags": [
           "Usuarios"
         ],
+        "summary": "Habilita un usuario",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Habilitación de usuario.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/EnableDisableUser"
             }
           }
         ],
@@ -305,18 +276,15 @@
         "tags": [
           "Usuarios"
         ],
+        "summary": "Deshabilita un usuario",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Deshabilitación de usuario.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/EnableDisableUser"
             }
           }
         ],
@@ -364,17 +332,38 @@
           "type": "string",
           "example": "password123"
         },
+        "role": {
+          "type": "string",
+          "example": "USER"
+        },
         "telefono": {
           "type": "string",
           "example": "123456789"
+        },
+        "enabled": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    },
+    "RegisterUser": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "user@example.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "password123"
         },
         "role": {
           "type": "string",
           "example": "USER"
         },
-        "enabled": {
-          "type": "boolean",
-          "example": true
+        "telefono": {
+          "type": "string",
+          "example": "123456789"
         }
       }
     },
