@@ -7,6 +7,14 @@ const doc = {
   },
   host: 'localhost:3000',
   schemes: ['http'],
+  securityDefinitions: {
+    BearerAuth: {
+      type: 'apiKey',
+      name: 'Authorization',
+      in: 'header',
+      description: 'Ingrese su token en el formato: Bearer <token>'
+    }
+  },
   definitions: {
     Hospital: {
       id: 1,

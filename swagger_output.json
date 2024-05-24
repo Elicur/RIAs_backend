@@ -10,6 +10,14 @@
   "schemes": [
     "http"
   ],
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Ingrese su token en el formato: Bearer <token>"
+    }
+  },
   "paths": {
     "/": {
       "get": {
@@ -42,9 +50,14 @@
         "description": "",
         "parameters": [
           {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
-            "description": "Add new user.",
+            "description": "Add new hospital.",
             "schema": {
               "$ref": "#/definitions/Hospital"
             }
@@ -53,8 +66,19 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       }
     },
     "/hospitales/{id}": {

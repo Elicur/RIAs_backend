@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const hospitalesController = require('../controllers/hospitalesController');
+const { verifyToken, isAdmin, isUser } = require('../middleware/auth');
 
 router.get('/', (req, res) => {
   /* #swagger.summary = 'Obtiene la lista de hospitales' */
@@ -15,12 +16,13 @@ router.get('/:id', (req, res) => {
   hospitalesController.getHospitalById(req, res);
 });
 
-router.post('/', (req, res) => {
+router.post('/', verifyToken, isUser, (req, res) => {
   /* #swagger.summary = 'Agrega un nuevo hospital' */
   /* #swagger.tags = ['Hospitales'] */
+  /* #swagger.security = [{ "BearerAuth": [] }] */
   /* #swagger.parameters['body'] = {
         in: 'body',
-        description: 'Add new user.',
+        description: 'Add new hospital.',
         schema: { $ref: '#/definitions/Hospital' }
     } */
   hospitalesController.createHospital(req, res);
