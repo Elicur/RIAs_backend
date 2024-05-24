@@ -36,7 +36,7 @@ Para instalar y ejecutar esta API, sigue los siguientes pasos:
 Registra un nuevo usuario con los siguientes datos.
 
 #### Ruta
-`POST /register`
+`POST /usuarios/register`
 
 #### Cuerpo de la Solicitud
 ```json

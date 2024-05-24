@@ -6,6 +6,31 @@ const generateToken = (user) => {
   return jwt.sign({ id: user.id, role: user.role }, 'your_secret_key', { expiresIn: '1h' });
 };
 
+// Función para crear usuarios por defecto
+const createDefaultUsers = async () => {
+  const defaultUsers = [
+    { email: 'admin@example.com', password: 'admin123', role: 'ADMIN', telefono: '123456789' },
+    { email: 'panadero@example.com', password: 'panadero123', role: 'PANADERO', telefono: '987654321' },
+    { email: 'user@example.com', password: 'user123', role: 'USER', telefono: '456123789' },
+  ];
+
+  for (const user of defaultUsers) {
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    const newUser = {
+      id: usuarios.length ? usuarios[usuarios.length - 1].id + 1 : 1,
+      email: user.email,
+      password: hashedPassword,
+      role: user.role,
+      telefono: user.telefono,
+      enabled: true,
+    };
+    usuarios.push(newUser);
+  }
+};
+
+// Llama a la función para crear usuarios por defecto al inicio
+createDefaultUsers();
+
 const register = async (req, res) => {
   const { email, password, role, telefono } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -26,7 +51,7 @@ const login = async (req, res) => {
   const user = usuarios.find(u => u.email === email);
   if (user && await bcrypt.compare(password, user.password)) {
     const token = generateToken(user);
-    res.json({ token });
+    res.json({ token, nombre: user.email, role: user.role });
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
   }

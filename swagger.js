@@ -50,6 +50,13 @@ const doc = {
     EnableDisableUser: {
       id: 1,
     },
+    Producto: {
+      id: 1,
+      nombre: "Producto Ejemplo",
+      descripcion: "Descripción del producto",
+      imagen: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+      precio: 9.99
+    }
   }
 };
 

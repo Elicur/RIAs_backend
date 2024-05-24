@@ -24,14 +24,14 @@ const isAdmin = (req, res, next) => {
 };
 
 const isPanadero = (req, res, next) => {
-    if (req.userRole !== 'PANADERO') {
+    if (req.userRole !== 'PANADERO' && req.userRole !== 'ADMIN') {
         return res.status(403).json({ message: 'Requires Panadero Role' });
     }
     next();
 };
 
 const isUser = (req, res, next) => {
-    if (req.userRole !== 'USER') {
+    if (req.userRole !== 'ADMIN' && req.userRole !== 'PANADERO' && req.userRole !== 'USER') {
         return res.status(403).json({ message: 'Requires User Role' });
     }
     next();
