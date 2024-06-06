@@ -7,10 +7,10 @@ let productos = [
     const updatedProductos = productos.map(producto => {
       return {
         ...producto,
-        imagen: `http://localhost:3000/uploads/${producto.imagen}`
+        imagen: `http://localhost:3000${producto.imagen}`
       };
     });
-    res.json(productos);
+    res.json(updatedProductos);
   };
   
   exports.getProductoById = (req, res) => {
@@ -24,14 +24,11 @@ let productos = [
   };
   
   exports.createProducto = (req, res) => {
-    const newProducto = {
-      id: productos.length ? productos[productos.length - 1].id + 1 : 1,
-      nombre: req.body.nombre,
-      descripcion: req.body.descripcion,
-      imagen: req.file ? req.file.path : null, // Ruta de la imagen
-      precio: req.body.precio,
-    };
-  
+    const newProducto = req.body;
+    newProducto.id = productos.length ? productos[productos.length - 1].id + 1 : 1;
+    if (req.file) {
+      newProducto.imagen = `/uploads/${req.file.filename}`;
+    }
     productos.push(newProducto);
     res.status(201).json(newProducto);
   };
