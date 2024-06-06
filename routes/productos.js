@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productosController = require('../controllers/productosController');
 const { verifyToken, isAdmin, isUser } = require('../middleware/auth');
+const upload = require('../middleware/upload');
 
 router.get('/', verifyToken, isUser, (req, res) => {
   /* #swagger.summary = 'Obtiene la lista de productos' */
@@ -16,7 +17,7 @@ router.get('/:id', verifyToken, isAdmin, (req, res) => {
   productosController.getProductoById(req, res);
 });
 
-router.post('/', verifyToken, isAdmin, (req, res) => {
+router.post('/', verifyToken, isAdmin, upload.single('imagen'), (req, res) => {
   /* #swagger.summary = 'Agrega un nuevo producto' */
   /* #swagger.tags = ['Productos'] */
   /* #swagger.security = [{ "BearerAuth": [] }] */
@@ -28,7 +29,7 @@ router.post('/', verifyToken, isAdmin, (req, res) => {
   productosController.createProducto(req, res);
 });
 
-router.put('/:id', verifyToken, isAdmin, (req, res) => {
+router.put('/:id', verifyToken, isAdmin, upload.single('imagen'), (req, res) => {
   /* #swagger.summary = 'Actualiza un producto existente' */
   /* #swagger.tags = ['Productos'] */
   /* #swagger.security = [{ "BearerAuth": [] }] */
@@ -48,5 +49,6 @@ router.delete('/:id', verifyToken, isAdmin, (req, res) => {
   /* #swagger.parameters['id'] = { description: 'ID del producto', type: 'integer', required: true } */
   productosController.deleteProducto(req, res);
 });
+
 
 module.exports = router;
