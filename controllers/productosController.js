@@ -17,7 +17,10 @@ let productos = [
     const { id } = req.params;
     const producto = productos.find(p => p.id == id);
     if (producto) {
-      res.json(producto);
+      res.json({
+        ...producto,
+        imagen: `http://localhost:3000${producto.imagen}`
+    });
     } else {
       res.status(404).json({ message: 'Producto no encontrado' });
     }
@@ -32,10 +35,21 @@ let productos = [
     productos.push(newProducto);
     res.status(201).json(newProducto);
   };
-  
+
   exports.updateProducto = (req, res) => {
     const { id } = req.params;
     const updatedProducto = req.body;
+  
+    if (req.file) {
+      updatedProducto.imagen = `/uploads/${req.file.filename}`;
+    }
+    else {
+      const existingProducto = productos.find(p => p.id == id);
+      if (existingProducto) {
+        updatedProducto.imagen = existingProducto.imagen;
+      }
+    }
+  
     const productoIndex = productos.findIndex(p => p.id == id);
     if (productoIndex !== -1) {
       productos[productoIndex] = { ...productos[productoIndex], ...updatedProducto };
