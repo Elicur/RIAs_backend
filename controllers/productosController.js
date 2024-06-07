@@ -59,11 +59,36 @@ let productos = [
     }
   };
   
+  const fs = require('fs');
+  const path = require('path');
+
   exports.deleteProducto = (req, res) => {
     const { id } = req.params;
     const productoIndex = productos.findIndex(p => p.id == id);
     if (productoIndex !== -1) {
-      const deletedProducto = productos.splice(productoIndex, 1);
+      const [deletedProducto] = productos.splice(productoIndex, 1);
+      console.log('Producto eliminado:', deletedProducto);
+
+      if (deletedProducto.imagen) {
+        console.log('URL de la imagen:', deletedProducto.imagen);
+        
+        // Construir la ruta completa de la imagen
+        const imagePath = path.join(__dirname, '..', deletedProducto.imagen);
+
+        console.log('Ruta de la imagen:', imagePath);
+
+        // Eliminar el archivo de imagen
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            console.error('Error al eliminar la imagen:', err);
+          } else {
+            console.log('Imagen eliminada:', imagePath);
+          }
+        });
+      } else {
+        console.log('No hay imagen asociada con este producto.');
+      }
+
       res.json(deletedProducto);
     } else {
       res.status(404).json({ message: 'Producto no encontrado' });
