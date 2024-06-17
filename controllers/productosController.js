@@ -1,3 +1,8 @@
+const e = require('cors');
+const insumos = require('./insumosController.js');
+const fs = require('fs');
+const path = require('path');
+
 let productos = [
     { 
       id: 1, 
@@ -23,9 +28,6 @@ let productos = [
       ]
     }
   ];
-  
-  const e = require('cors');
-  const insumos = require('./insumosController.js');
 
   exports.getProductos = (req, res) => {
     const updatedProductos = productos.map(producto => {
@@ -90,7 +92,8 @@ let productos = [
   exports.updateProducto = (req, res) => {
     const { id } = req.params;
     const updatedProducto = req.body;
-  
+    const productoIndex = productos.findIndex(p => p.id == id);
+
     if (req.file) {
       updatedProducto.imagen = `/uploads/${req.file.filename}`;
     }
@@ -100,8 +103,51 @@ let productos = [
         updatedProducto.imagen = existingProducto.imagen;
       }
     }
+
+    // Manejar insumos
+    const existingProducto = productos.find(p => p.id == id);
+    let combinedInsumos = existingProducto.insumos || [];
+    if (updatedProducto.insumos) {
+      try {
+        if (!Array.isArray(updatedProducto.insumos)) {
+          throw new Error('Los insumos deben ser un arreglo de objetos.');
+        }
+      
+        // Actualizar o añadir nuevos insumos
+        updatedProducto.insumos.forEach(pi => {
+          const existingInsumoIndex = combinedInsumos.findIndex(insumo => insumo.id == pi.insumoId);
+          if (existingInsumoIndex !== -1) {
+            combinedInsumos[existingInsumoIndex] = {
+              id: pi.insumoId,
+              cantidad: pi.cantidad,
+              insumo: insumos.findInsumo(pi.insumoId)
+            };
+          } else {
+            combinedInsumos.push({
+              id: pi.insumoId,
+              cantidad: pi.cantidad,
+              insumo: insumos.findInsumo(pi.insumoId)
+            });
+          }
+        });
+      
+        // Eliminar insumos
+        combinedInsumos = combinedInsumos.filter(insumo => 
+          updatedProducto.insumos.some(pi => pi.insumoId == insumo.id)
+        );
+
+      } catch (error) {
+        console.error('Error al analizar los insumos:', error);
+        combinedInsumos = existingProducto.insumos;
+      }
+    }
+    else {
+      combinedInsumos = [];
+    }
+
+    updatedProducto.insumos = combinedInsumos;
   
-    const productoIndex = productos.findIndex(p => p.id == id);
+    //const productoIndex = productos.findIndex(p => p.id == id);
     if (productoIndex !== -1) {
       productos[productoIndex] = { ...productos[productoIndex], ...updatedProducto };
       res.json(productos[productoIndex]);
@@ -109,9 +155,6 @@ let productos = [
       res.status(404).json({ message: 'Producto no encontrado' });
     }
   };
-  
-  const fs = require('fs');
-  const path = require('path');
 
   exports.deleteProducto = (req, res) => {
     const { id } = req.params;
