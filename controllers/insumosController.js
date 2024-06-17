@@ -52,3 +52,7 @@ exports.deleteInsumo = (req, res) => {
         res.status(404).json({ message: 'Insumo no encontrado' });
     }
 }
+
+exports.findInsumo = (id) => {
+    return insumos.find(i => i.id === parseInt(id));
+};
