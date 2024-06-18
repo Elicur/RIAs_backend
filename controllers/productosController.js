@@ -58,6 +58,7 @@ let productos = [
   
   exports.createProducto = (req, res) => {
     const newProducto = req.body;
+    newProducto.precio = Number(newProducto.precio);
 
     if (newProducto.insumos) {
       try {
