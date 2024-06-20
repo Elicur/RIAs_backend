@@ -8,7 +8,7 @@ let productos = [
       id: 1, 
       nombre: 'Producto 1', 
       descripcion: 'Descripción 1', 
-      imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', 
+      imagen: '/uploads/prod1.jpg', 
       precio: 10.0, 
       insumos: [
         { id: 1, cantidad: 1.2 }, // 2 Kg de Harina
@@ -20,11 +20,31 @@ let productos = [
       id: 2, 
       nombre: 'Producto 2', 
       descripcion: 'Descripción 2', 
-      imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', 
+      imagen: '/uploads/prod2.jpg', 
       precio: 20.0, 
       insumos: [
         { id: 2, cantidad: 0.5 },
         { id: 3, cantidad: 0.7 }
+      ]
+    },
+    { 
+      id: 3, 
+      nombre: 'Chancho Jabalí', 
+      descripcion: 'Cazado con cal.308', 
+      imagen: '/uploads/chancho.jpg', 
+      precio: 50.0, 
+      insumos: [
+        { id: 2, cantidad: 0.5 }
+      ]
+    },
+    { 
+      id: 4, 
+      nombre: 'Matuski', 
+      descripcion: 'Bien amargo', 
+      imagen: '/uploads/mate.webp', 
+      precio: 15.0, 
+      insumos: [
+        { id: 2, cantidad: 0.5 }
       ]
     }
   ];

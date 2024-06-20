@@ -1,6 +1,25 @@
 let ordenes = [
-    { id: 1, productos: ['1', '2'], fecha: '23/12/2024', cobro: 30, estado: 'Pendiente'},
-    { id: 2, productos: ['2'], fecha: '22/12/2024', cobro: 20, estado: 'En Preparacion'},
+  {
+    id: 1,
+    productos: [
+      { id: '1', cantidad: 3 },
+      { id: '2', cantidad: 2 }
+    ],
+    fecha: '23/12/2024',
+    cobro: 30,
+    estado: 'Pendiente',
+    cliente: 'user@example.com'
+  },
+  {
+    id: 2,
+    productos: [
+      { id: '2', cantidad: 1 }
+    ],
+    fecha: '28/12/2024',
+    cobro: 20,
+    estado: 'En Preparacion',
+    cliente: 'user@example.com'
+  },
   ];
   
   exports.getOrdenes = (req, res) => {
@@ -12,6 +31,7 @@ let ordenes = [
     newOrden.id = ordenes.length ? ordenes[ordenes.length - 1].id + 1 : 1;
     ordenes.push(newOrden);
     res.status(201).json(newOrden);
+    console.log('Nueva Orden:', newOrden);
   };
 
   exports.updateOrden = (req, res) => {
