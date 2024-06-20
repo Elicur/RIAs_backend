@@ -8,7 +8,7 @@ let productos = [
       id: 1, 
       nombre: 'Producto 1', 
       descripcion: 'Descripción 1', 
-      imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', 
+      imagen: '/uploads/prod1.jpg', 
       precio: 10.0, 
       insumos: [
         { id: 1, cantidad: 1.2 }, // 2 Kg de Harina
@@ -20,7 +20,7 @@ let productos = [
       id: 2, 
       nombre: 'Producto 2', 
       descripcion: 'Descripción 2', 
-      imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', 
+      imagen: '/uploads/prod2.jpg', 
       precio: 20.0, 
       insumos: [
         { id: 2, cantidad: 0.5 },
@@ -93,7 +93,13 @@ let productos = [
   exports.updateProducto = (req, res) => {
     const { id } = req.params;
     const updatedProducto = req.body;
+    updatedProducto.precio = Number(updatedProducto.precio);
     const productoIndex = productos.findIndex(p => p.id == id);
+    let combinedInsumos = [];
+
+    if (productoIndex === -1) {
+      return res.status(404).json({ message: 'Producto no encontrado' });
+    }
 
     if (req.file) {
       updatedProducto.imagen = `/uploads/${req.file.filename}`;
@@ -107,48 +113,26 @@ let productos = [
 
     // Manejar insumos
     const existingProducto = productos.find(p => p.id == id);
-    let combinedInsumos = existingProducto.insumos || [];
-    if (updatedProducto.insumos) {
-      try {
-        if (!Array.isArray(updatedProducto.insumos)) {
-          throw new Error('Los insumos deben ser un arreglo de objetos.');
+    if (existingProducto && updatedProducto.insumos) {
+        try {
+            if (!Array.isArray(updatedProducto.insumos)) {
+                throw new Error('Los insumos deben ser un arreglo de objetos.');
+            }
+            combinedInsumos = updatedProducto.insumos.map(pi => ({
+                id: pi.insumoId,
+                cantidad: pi.cantidad,
+                insumo: insumos.findInsumo(i => i.id == pi.insumoId)
+            }));
+        } catch (error) {
+            console.error('Error al analizar los insumos:', error);
+            combinedInsumos = existingProducto.insumos;
         }
-      
-        // Actualizar o añadir nuevos insumos
-        updatedProducto.insumos.forEach(pi => {
-          const existingInsumoIndex = combinedInsumos.findIndex(insumo => insumo.id == pi.insumoId);
-          if (existingInsumoIndex !== -1) {
-            combinedInsumos[existingInsumoIndex] = {
-              id: pi.insumoId,
-              cantidad: pi.cantidad,
-              insumo: insumos.findInsumo(pi.insumoId)
-            };
-          } else {
-            combinedInsumos.push({
-              id: pi.insumoId,
-              cantidad: pi.cantidad,
-              insumo: insumos.findInsumo(pi.insumoId)
-            });
-          }
-        });
-      
-        // Eliminar insumos
-        combinedInsumos = combinedInsumos.filter(insumo => 
-          updatedProducto.insumos.some(pi => pi.insumoId == insumo.id)
-        );
-
-      } catch (error) {
-        console.error('Error al analizar los insumos:', error);
-        combinedInsumos = existingProducto.insumos;
-      }
-    }
-    else {
-      combinedInsumos = [];
+    } else {
+        combinedInsumos = [];
     }
 
     updatedProducto.insumos = combinedInsumos;
   
-    //const productoIndex = productos.findIndex(p => p.id == id);
     if (productoIndex !== -1) {
       productos[productoIndex] = { ...productos[productoIndex], ...updatedProducto };
       res.json(productos[productoIndex]);
