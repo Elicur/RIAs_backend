@@ -42,9 +42,19 @@ const isUser = (req, res, next) => {
     next();
 };
 
+// Middleware de autorización para verificar el ID del usuario
+const isCurrentUser = (req, res, next) => {
+    const userId = parseInt(req.params.id);
+    if (userId !== req.userId) {
+        return res.status(403).json({ message: 'Unauthorized' });
+    }
+    next();
+};  
+
 module.exports = {
     verifyToken,
     isAdmin,
     isPanadero,
-    isUser
+    isUser,
+    isCurrentUser
 };
