@@ -10,6 +10,13 @@ router.get('/', verifyToken, isPanadero, (req, res) => {
   ordenesController.getOrdenes(req, res);
 });
 
+router.get('/:id', verifyToken, isPanadero, (req, res) => {
+  /* #swagger.summary = 'Obtiene una orden por ID' */
+  /* #swagger.tags = ['Ordenes'] */
+  /* #swagger.parameters['id'] = { description: 'ID de la orden', type: 'integer', required: true } */
+  ordenesController.getOrdenById(req, res);
+});
+
 router.post('/', verifyToken, isUser, (req, res) => {
   /* #swagger.summary = 'Agrega una nueva orden' */
   /* #swagger.tags = ['Ordenes'] */

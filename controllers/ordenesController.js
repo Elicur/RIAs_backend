@@ -26,6 +26,16 @@ let ordenes = [
     res.json(ordenes);
   };
 
+  exports.getOrdenById = (req, res) => {
+    const { id } = req.params;
+    const orden = ordenes.find(o => o.id == id);
+    if (orden) {
+      res.json(orden);
+    } else {
+      res.status(404).json({ message: 'Orden no encontrada' });
+    }
+  };
+
   exports.createOrden = (req, res) => {
     const newOrden = req.body;
     newOrden.id = ordenes.length ? ordenes[ordenes.length - 1].id + 1 : 1;
