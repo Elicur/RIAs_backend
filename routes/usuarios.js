@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usuariosController = require('../controllers/usuariosController');
-const { verifyToken, isUser, isCurrentUser, isAdmin } = require('../middleware/auth');
+const { verifyToken, isUser, isCurrentUser, isAdmin, isOnlyUser } = require('../middleware/auth');
 
 
 router.post('/register', (req, res) => {
@@ -90,7 +90,7 @@ router.put('/updateRole', verifyToken, isAdmin, (req, res) => {
 });
 
 //perfil
-router.get('/:id', verifyToken, isUser, isCurrentUser, (req, res) => {
+router.get('/:id', verifyToken, isOnlyUser, isCurrentUser, (req, res) => {
   /* #swagger.summary = 'Obtiene un usuario por ID' */
   usuariosController.getProfile(req, res);
 });
