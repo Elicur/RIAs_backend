@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { get } = require('../routes/usuarios');
 const usuarios = [];
 
 const generateToken = (user) => {
@@ -101,6 +102,16 @@ const disableUser = (req, res) => {
   }
 };
 
+const getProfile = (req, res) => {
+  const { id } = req.params;
+  const user = usuarios.find(u => u.id == id);
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404).json({ message: 'Usuario no encontrado' });
+  }
+}
+
 module.exports = {
   register,
   login,
@@ -108,4 +119,5 @@ module.exports = {
   forgotPassword,
   enableUser,
   disableUser,
+  getProfile
 };

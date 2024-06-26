@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const usuariosController = require('../controllers/usuariosController');
+const { verifyToken, isUser, isCurrentUser } = require('../middleware/auth');
+
 
 router.post('/register', (req, res) => {
   /* #swagger.summary = 'Registra un nuevo usuario' */
@@ -72,6 +74,12 @@ router.post('/disable-user', (req, res) => {
         schema: { $ref: '#/definitions/EnableDisableUser' }
     } */
   usuariosController.disableUser(req, res);
+});
+
+//perfil
+router.get('/:id', verifyToken, isCurrentUser, (req, res) => {
+  /* #swagger.summary = 'Obtiene un usuario por ID' */
+  usuariosController.getProfile(req, res);
 });
 
 module.exports = router;
