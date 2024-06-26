@@ -10,7 +10,7 @@ router.get('/', verifyToken, isUser, (req, res) => {
   productosController.getProductos(req, res);
 });
 
-router.get('/:id', verifyToken, isAdmin, (req, res) => {
+router.get('/:id', verifyToken, isUser, (req, res) => {
   /* #swagger.summary = 'Obtiene un producto por ID' */
   /* #swagger.tags = ['Productos'] */
   /* #swagger.parameters['id'] = { description: 'ID del producto', type: 'integer', required: true } */
