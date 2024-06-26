@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+//const { ordenes } = require('../controllers/ordenesController.js');
 
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
@@ -16,6 +17,7 @@ const verifyToken = (req, res, next) => {
             return res.status(500).json({ message: 'Failed to authenticate token' });
         }
         req.userId = decoded.id;
+        req.userEmail = decoded.email;
         req.userRole = decoded.role;
         next();
     });
@@ -42,19 +44,40 @@ const isUser = (req, res, next) => {
     next();
 };
 
-// Middleware de autorización para verificar el ID del usuario
+// Es el usuario actual?
 const isCurrentUser = (req, res, next) => {
     const userId = parseInt(req.params.id);
     if (userId !== req.userId) {
         return res.status(403).json({ message: 'Unauthorized' });
     }
     next();
-};  
+};
+
+const isOnlyUser = (req, res, next) => {
+    if (req.userRole !== 'USER') {
+        return res.status(403).json({ message: 'Requires User Role' });
+    }
+    next();
+};
+
+// El usuario es el dueño de la orden?
+/* const isOrderOwner = (req, res, next) => {
+    const userEmail = req.userEmail;
+    console.log('userEmail', userEmail);
+    const orderId = parseInt(req.params.id);
+    const order = ordenes.find(order => order.id === orderId);
+    if (order.cliente !== userEmail) {
+        return res.status(403).json({ message: 'Unauthorized' });
+    }
+    next();
+}; */
 
 module.exports = {
     verifyToken,
     isAdmin,
     isPanadero,
     isUser,
-    isCurrentUser
+    isCurrentUser,
+    isOnlyUser
+    //isOrderOwner
 };

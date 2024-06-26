@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usuariosController = require('../controllers/usuariosController');
-const { verifyToken, isUser, isCurrentUser } = require('../middleware/auth');
+const { verifyToken, isUser, isCurrentUser, isAdmin } = require('../middleware/auth');
 
 
 router.post('/register', (req, res) => {
@@ -76,8 +76,21 @@ router.post('/disable-user', (req, res) => {
   usuariosController.disableUser(req, res);
 });
 
+
+router.get('/', verifyToken, isAdmin, (req, res) => {
+  /* #swagger.summary = 'Obtiene la lista de usuarios' */
+  /* #swagger.tags = ['Usuarios'] */
+  usuariosController.getUsers(req, res);
+});
+
+router.put('/updateRole', verifyToken, isAdmin, (req, res) => {
+  /* #swagger.summary = 'Actualiza el rol de un usuario' */
+  /* #swagger.tags = ['Usuarios'] */
+  usuariosController.updateRole(req, res);
+});
+
 //perfil
-router.get('/:id', verifyToken, isCurrentUser, (req, res) => {
+router.get('/:id', verifyToken, isUser, isCurrentUser, (req, res) => {
   /* #swagger.summary = 'Obtiene un usuario por ID' */
   usuariosController.getProfile(req, res);
 });
