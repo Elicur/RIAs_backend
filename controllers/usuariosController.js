@@ -4,7 +4,7 @@ const { get } = require('../routes/usuarios');
 const usuarios = [];
 
 const generateToken = (user) => {
-  return jwt.sign({ id: user.id, role: user.role }, 'your_secret_key', { expiresIn: '1h' });
+  return jwt.sign({ id: user.id, email:user.email, role: user.role }, 'your_secret_key', { expiresIn: '1h' });
 };
 
 // Función para crear usuarios por defecto
@@ -52,7 +52,7 @@ const login = async (req, res) => {
   const user = usuarios.find(u => u.email === email);
   if (user && await bcrypt.compare(password, user.password)) {
     const token = generateToken(user);
-    res.json({ token, nombre: user.email, role: user.role });
+    res.json({ token, nombre: user.email, role: user.role, userId: user.id});
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
   }
@@ -112,6 +112,21 @@ const getProfile = (req, res) => {
   }
 }
 
+const getUsers = (req, res) => {
+  res.json(usuarios);
+};
+
+const updateRole = (req, res) => {
+  const { id, role } = req.body;
+  const user = usuarios.find(u => u.id == id);
+  if (user) {
+    user.role = role;
+    res.json({ message: 'Role updated' });
+  } else {
+    res.status(404).json({ message: 'Usuario no encontrado' });
+  }
+}
+
 module.exports = {
   register,
   login,
@@ -119,5 +134,7 @@ module.exports = {
   forgotPassword,
   enableUser,
   disableUser,
-  getProfile
+  getProfile,
+  getUsers,
+  updateRole
 };

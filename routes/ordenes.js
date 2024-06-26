@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ordenesController = require('../controllers/ordenesController');
-const { verifyToken, isAdmin, isUser, isPanadero } = require('../middleware/auth');
+const { verifyToken, isAdmin, isUser, isPanadero, isOnlyUser } = require('../middleware/auth');
 const upload = require('../middleware/upload');
 
 router.get('/', verifyToken, isPanadero, (req, res) => {
@@ -17,7 +17,15 @@ router.get('/:id', verifyToken, isPanadero, (req, res) => {
   ordenesController.getOrdenById(req, res);
 });
 
-router.post('/', verifyToken, isUser, (req, res) => {
+// obtener ordenes por cliente
+router.get('/cliente/:cliente', verifyToken, isUser, (req, res) => {
+  /* #swagger.summary = 'Obtiene las ordenes de un cliente' */
+  /* #swagger.tags = ['Ordenes'] */
+  /* #swagger.parameters['cliente'] = { description: 'Correo del cliente', type: 'string', required: true } */
+  ordenesController.getOrdenesByCliente(req, res);
+});
+
+router.post('/', verifyToken, isOnlyUser, (req, res) => {
   /* #swagger.summary = 'Agrega una nueva orden' */
   /* #swagger.tags = ['Ordenes'] */
   /* #swagger.security = [{ "BearerAuth": [] }] */

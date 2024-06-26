@@ -5,7 +5,7 @@ let ordenes = [
       { id: '1', cantidad: 3 },
       { id: '2', cantidad: 2 }
     ],
-    fecha: '23/12/2024',
+    fecha: '2024-12-23',
     cobro: 30,
     estado: 'Pendiente',
     cliente: 'user@example.com'
@@ -15,7 +15,7 @@ let ordenes = [
     productos: [
       { id: '2', cantidad: 1 }
     ],
-    fecha: '28/12/2024',
+    fecha: '2024-12-28',
     cobro: 20,
     estado: 'En Preparacion',
     cliente: 'user@example.com'
@@ -33,6 +33,16 @@ let ordenes = [
       res.json(orden);
     } else {
       res.status(404).json({ message: 'Orden no encontrada' });
+    }
+  };
+
+  exports.getOrdenesByCliente = (req, res) => {
+    const { cliente } = req.params;
+    const ordenesCliente = ordenes.filter(o => o.cliente == cliente);
+    if (ordenesCliente) {
+      res.json(ordenesCliente);
+    } else {
+      res.status(404).json({ message: 'Ordenes no encontradas' });
     }
   };
 
