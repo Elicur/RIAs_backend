@@ -1,3 +1,5 @@
+const productos = require('./productosController.js');
+
 let insumos = [
     { id: 1, nombre: 'Harina', unidad: 'Kg' },
     { id: 2, nombre: 'Azúcar', unidad: 'Kg' },
@@ -44,8 +46,10 @@ exports.updateInsumo = (req, res) => {
 
 exports.deleteInsumo = (req, res) => {
     const { id } = req.params;
+    console.log('id en insumos:', id);
     const insumoIndex = insumos.findIndex(i => i.id == id);
     if (insumoIndex !== -1) {
+        productos.removeInsumoFromProducts(id);
         const deletedInsumo = insumos.splice(insumoIndex, 1);
         res.json(deletedInsumo);
     } else {

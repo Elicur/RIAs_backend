@@ -194,3 +194,8 @@ let productos = [
     }
   };
   
+  exports.removeInsumoFromProducts = (insumoId) => {
+    productos.forEach(producto => {
+      producto.insumos = producto.insumos.filter(insumo => insumo.id != insumoId);
+    });
+  };
