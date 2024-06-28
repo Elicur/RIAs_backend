@@ -43,6 +43,18 @@ let carrito = [
     }
   }
 
+  exports.deleteProducto = (req, res) => {
+    const { idProducto } = req.params;
+    const initialLength = carrito.length;
+    carrito = carrito.filter(c => c.idProd != idProducto);
+  
+    if (carrito.length < initialLength) {
+      res.status(200).json({ message: `Producto ${idProducto} eliminado de todos los carritos` });
+    } else {
+      res.status(404).json({ message: `Producto ${idProducto} no encontrado` });
+    }
+  };
+  
   exports.deleteAll = (req, res) => {
     const { email } = req.params;
     const initialLength = carrito.length;

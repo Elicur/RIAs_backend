@@ -30,6 +30,14 @@ router.delete('/:email', verifyToken, isUser, (req, res) => {
   carritoController.deleteAll(req, res);
 });
 
+router.delete('/producto/:idProducto', verifyToken, isUser, (req, res) => {
+  /* #swagger.summary = 'Elimina todos los productos idProducto' */
+  /* #swagger.tags = ['Productos'] */
+  /* #swagger.security = [{ "BearerAuth": [] }] */
+  /* #swagger.parameters['id'] = { description: 'ID del producto', type: 'integer', required: true } */
+  carritoController.deleteProducto(req, res);
+});
+
 router.delete('/:email/:id', verifyToken, isUser, (req, res) => {
   /* #swagger.summary = 'Elimina un producto' */
   /* #swagger.tags = ['Productos'] */

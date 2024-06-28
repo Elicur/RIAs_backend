@@ -65,3 +65,19 @@ let ordenes = [
       res.status(404).json({ message: 'Orden no encontrada' });
     }
   };
+
+  exports.deleteProductoFromOrdenes = (req, res) => {
+    const { idProducto } = req.params;
+  
+    // Eliminar el producto de todas las órdenes
+    ordenes = ordenes.map(orden => ({
+      ...orden,
+      productos: orden.productos.filter(producto => producto.id != idProducto)
+    }));
+  
+    // Eliminar las órdenes que se quedan sin productos
+    ordenes = ordenes.filter(orden => orden.productos.length > 0);
+  
+    res.json({ message: `Producto con id ${idProducto} eliminado de todas las ordenes` });
+    console.log(`Producto con id ${idProducto} eliminado de todas las ordenes`);
+  };

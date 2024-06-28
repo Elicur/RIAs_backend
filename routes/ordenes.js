@@ -50,4 +50,17 @@ router.put('/:id', verifyToken, isPanadero, (req, res) => {
   ordenesController.updateOrden(req, res);
 });
 
+router.delete('/producto/:idProducto', verifyToken, isAdmin, (req, res) => {
+  /* #swagger.summary = 'Actualiza una orden existente' */
+  /* #swagger.tags = ['Ordenes'] */
+  /* #swagger.security = [{ "BearerAuth": [] }] */
+  /* #swagger.parameters['id'] = { description: 'ID de la orden', type: 'integer', required: true } */
+  /* #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Update orden.',
+        schema: { $ref: '#/definitions/Orden' }
+    } */
+  ordenesController.deleteProductoFromOrdenes(req, res);
+});
+
 module.exports = router;
