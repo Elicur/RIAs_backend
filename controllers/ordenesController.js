@@ -1,34 +1,34 @@
 let ordenes = [
   {
     id: 1,
-    productos: [
-      { id: 1, cantidad: 3 },
-      { id: 2, cantidad: 2 }
+    productos: [  
+      { id: 4, cantidad: 1 },
+      { id: 8, cantidad: 5 }
     ],
-    fecha: '2024-12-23',
-    cobro: 30,
-    estado: 'Pendiente',
+    fecha: '2024-06-25',
+    cobro: 110,
+    estado: 'Listo',
     cliente: 'user@example.com'
   },
   {
     id: 2,
     productos: [
-      { id: 2, cantidad: 1 }
+      { id: 5, cantidad: 2 },
+      { id: 7, cantidad: 2 }
     ],
-    fecha: '2024-12-28',
-    cobro: 20,
+    fecha: '2024-07-23',
+    cobro: 30,
     estado: 'En Preparacion',
     cliente: 'user@example.com'
   },
   {
     id: 3,
-    productos: [  
-      { id: 1, cantidad: 1 },
-      { id: 3, cantidad: 2 }
+    productos: [
+      { id: 2, cantidad: 4 }
     ],
-    fecha: '2024-06-25',
-    cobro: 110,
-    estado: 'Listo',
+    fecha: '2024-07-28',
+    cobro: 20,
+    estado: 'Pendiente',
     cliente: 'user@example.com'
   }
   ];

@@ -77,7 +77,7 @@ let productos = [
       nombre: 'Rosca de chicharrones', 
       descripcion: 'Rosca con crujientes chicharrones.', 
       imagen: '/uploads/roscachicharrones.jpg', 
-      precio: 30.0, 
+      precio: 20.0, 
       insumos: [
         { id: 1, cantidad: 1 },
         { id: 3, cantidad: 0.5 },
@@ -92,7 +92,7 @@ let productos = [
       nombre: 'Rosca de dulce de leche', 
       descripcion: 'Rosca rellena con dulce de leche. Ideal para la merienda.', 
       imagen: '/uploads/roscadulcedeleche.jpg', 
-      precio: 10.0, 
+      precio: 22.0, 
       insumos: [
         { id: 1, cantidad: 1 },
         { id: 2, cantidad: 0.4 },
@@ -121,7 +121,7 @@ let productos = [
       nombre: 'Croissant',
       descripcion: 'Croissant como el francés, pero mejor.',
       imagen: '/uploads/croissant.jpg',
-      precio: 10.0,
+      precio: 12.0,
       insumos: [
         { id: 1, cantidad: 0.6 },
         { id: 2, cantidad: 0.4 },
