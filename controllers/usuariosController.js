@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const { get } = require('../routes/usuarios');
 const usuarios = [];
 
@@ -64,10 +65,12 @@ const login = async (req, res) => {
   }
 };
 
+//Reestablecer contraseña
+
 const changePassword = async (req, res) => {
-  const { id, oldPassword, newPassword } = req.body;
-  const user = usuarios.find(u => u.id == id);
-  if (user && await bcrypt.compare(oldPassword, user.password)) {
+  const { email, newPassword } = req.body;
+  const user = usuarios.find(u => u.email == email);
+  if (user) {
     user.password = await bcrypt.hash(newPassword, 10);
     res.json({ message: 'Password updated' });
   } else {
@@ -75,12 +78,15 @@ const changePassword = async (req, res) => {
   }
 };
 
-const forgotPassword = (req, res) => {
+const forgotPassword = (req, res) => {  
   const { email } = req.body;
   const user = usuarios.find(u => u.email === email);
   if (user) {
-    // Aquí podrías enviar un correo electrónico con un enlace para restablecer la contraseña
-    res.json({ message: 'Password reset link sent' });
+    const token = crypto.randomBytes(20).toString('hex');
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    const resetLink = `http://localhost:4200/reset-password?token=${token}`;
+    res.json({ message: 'Password reset link sent', resetLink });
   } else {
     res.status(404).json({ message: 'User not found' });
   }
