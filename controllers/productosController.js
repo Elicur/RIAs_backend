@@ -11,9 +11,11 @@ let productos = [
       imagen: '/uploads/panflauta.jpg', 
       precio: 10.0, 
       insumos: [
-        { id: 1, cantidad: 1.2 }, // 2 Kg de Harina
-        { id: 2, cantidad: 0.2 },
-        { id: 3, cantidad: 1 }
+        { id: 1, cantidad: 1 },
+        { id: 4, cantidad: 0.02 },
+        { id: 5, cantidad: 0.2 },
+        { id: 6, cantidad: 2 },
+        { id: 11, cantidad: 0.01 }
       ]
     },
     { 
@@ -23,8 +25,10 @@ let productos = [
       imagen: '/uploads/pandemolde.jpg', 
       precio: 20.0, 
       insumos: [
-        { id: 2, cantidad: 0.5 },
-        { id: 3, cantidad: 0.7 }
+        { id: 1, cantidad: 1.2 },
+        { id: 4, cantidad: 0.02 },
+        { id: 5, cantidad: 0.2 },
+        { id: 6, cantidad: 3 },
       ]
     },
     { 
@@ -34,7 +38,8 @@ let productos = [
       imagen: '/uploads/chancho.jpg', 
       precio: 50.0, 
       insumos: [
-        { id: 2, cantidad: 0.5 }
+        { id: 1, cantidad: 0.5 },
+        { id: 4, cantidad: 0.02 },
       ]
     },
     { 
@@ -44,7 +49,11 @@ let productos = [
       imagen: '/uploads/panportenio.jpg', 
       precio: 15.0, 
       insumos: [
-        { id: 2, cantidad: 0.5 }
+        { id: 1, cantidad: 1.5 },
+        { id: 4, cantidad: 0.03 },
+        { id: 5, cantidad: 0.4 },
+        { id: 6, cantidad: 2 },
+        { id: 11, cantidad: 0.01 }
       ]
     },
     { 
@@ -54,7 +63,13 @@ let productos = [
       imagen: '/uploads/roscajamonyqueso.jpg', 
       precio: 25.0, 
       insumos: [
-        { id: 2, cantidad: 0.5 }
+        { id: 1, cantidad: 1 },
+        { id: 3, cantidad: 0.5 },
+        { id: 4, cantidad: 0.03 },
+        { id: 6, cantidad: 3 },
+        { id: 11, cantidad: 0.02 },
+        { id: 13, cantidad: 0.2 },
+        { id: 14, cantidad: 0.2 }
       ]
     },
     { 
@@ -64,7 +79,12 @@ let productos = [
       imagen: '/uploads/roscachicharrones.jpg', 
       precio: 30.0, 
       insumos: [
-        { id: 2, cantidad: 0.5 }
+        { id: 1, cantidad: 1 },
+        { id: 3, cantidad: 0.5 },
+        { id: 4, cantidad: 0.03 },
+        { id: 6, cantidad: 3 },
+        { id: 11, cantidad: 0.02 },
+        { id: 15, cantidad: 0.15 }
       ]
     },
     { 
@@ -74,7 +94,13 @@ let productos = [
       imagen: '/uploads/roscadulcedeleche.jpg', 
       precio: 10.0, 
       insumos: [
-        { id: 2, cantidad: 0.5 }
+        { id: 1, cantidad: 1 },
+        { id: 2, cantidad: 0.4 },
+        { id: 3, cantidad: 0.5 },
+        { id: 4, cantidad: 0.03 },
+        { id: 6, cantidad: 3 },
+        { id: 11, cantidad: 0.02 },
+        { id: 16, cantidad: 0.1 }
       ]
     },
     { 
@@ -84,7 +110,10 @@ let productos = [
       imagen: '/uploads/sanguchito.jpg', 
       precio: 10.0, 
       insumos: [
-        { id: 2, cantidad: 0.5 }
+        { id: 1, cantidad: 0.5 },
+        { id: 4, cantidad: 0.02 },
+        { id: 5, cantidad: 0.2 },
+        { id: 6, cantidad: 1 },
       ]
     },
     {
@@ -94,9 +123,13 @@ let productos = [
       imagen: '/uploads/croissant.jpg',
       precio: 10.0,
       insumos: [
-        { id: 1, cantidad: 1.2 }, // 2 Kg de Harina
-        { id: 2, cantidad: 0.2 },
-        { id: 3, cantidad: 1 }
+        { id: 1, cantidad: 0.6 },
+        { id: 2, cantidad: 0.4 },
+        { id: 3, cantidad: 0.5 },
+        { id: 5, cantidad: 0.2 },
+        { id: 8, cantidad: 0.02 },
+        { id: 10, cantidad: 0.1 },
+        { id: 16, cantidad: 0.1 }
       ]
     }
   ];

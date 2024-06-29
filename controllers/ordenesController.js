@@ -2,8 +2,8 @@ let ordenes = [
   {
     id: 1,
     productos: [
-      { id: '1', cantidad: 3 },
-      { id: '2', cantidad: 2 }
+      { id: 1, cantidad: 3 },
+      { id: 2, cantidad: 2 }
     ],
     fecha: '2024-12-23',
     cobro: 30,
@@ -13,7 +13,7 @@ let ordenes = [
   {
     id: 2,
     productos: [
-      { id: '2', cantidad: 1 }
+      { id: 2, cantidad: 1 }
     ],
     fecha: '2024-12-28',
     cobro: 20,
@@ -23,8 +23,8 @@ let ordenes = [
   {
     id: 3,
     productos: [  
-      { id: '1', cantidad: 1 },
-      { id: '3', cantidad: 2 }
+      { id: 1, cantidad: 1 },
+      { id: 3, cantidad: 2 }
     ],
     fecha: '2024-06-25',
     cobro: 110,
