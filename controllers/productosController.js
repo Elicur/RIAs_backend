@@ -6,9 +6,9 @@ const path = require('path');
 let productos = [
     { 
       id: 1, 
-      nombre: 'Producto 1', 
-      descripcion: 'Descripción 1', 
-      imagen: '/uploads/prod1.jpg', 
+      nombre: 'Pan de flauta', 
+      descripcion: 'Pan de flauta individual, ideal para acompañar tus comidas.', 
+      imagen: '/uploads/panflauta.jpg', 
       precio: 10.0, 
       insumos: [
         { id: 1, cantidad: 1.2 }, // 2 Kg de Harina
@@ -18,9 +18,9 @@ let productos = [
     },
     { 
       id: 2, 
-      nombre: 'Producto 2', 
-      descripcion: 'Descripción 2', 
-      imagen: '/uploads/prod2.jpg', 
+      nombre: 'Pan de molde', 
+      descripcion: 'Pan de molde, muy suave y esponjoso.', 
+      imagen: '/uploads/pandemolde.jpg', 
       precio: 20.0, 
       insumos: [
         { id: 2, cantidad: 0.5 },
@@ -39,12 +39,64 @@ let productos = [
     },
     { 
       id: 4, 
-      nombre: 'Matuski', 
-      descripcion: 'Bien amargo', 
-      imagen: '/uploads/mate.webp', 
+      nombre: 'Pan porteño', 
+      descripcion: 'Tira de pan porteño, ideal para compartir.', 
+      imagen: '/uploads/panportenio.jpg', 
       precio: 15.0, 
       insumos: [
         { id: 2, cantidad: 0.5 }
+      ]
+    },
+    { 
+      id: 5, 
+      nombre: 'Rosca de jamón y queso', 
+      descripcion: 'Rosca preparada con el mejor jamón y queso del país.', 
+      imagen: '/uploads/roscajamonyqueso.jpg', 
+      precio: 25.0, 
+      insumos: [
+        { id: 2, cantidad: 0.5 }
+      ]
+    },
+    { 
+      id: 6, 
+      nombre: 'Rosca de chicharrones', 
+      descripcion: 'Rosca con crujientes chicharrones.', 
+      imagen: '/uploads/roscachicharrones.jpg', 
+      precio: 30.0, 
+      insumos: [
+        { id: 2, cantidad: 0.5 }
+      ]
+    },
+    { 
+      id: 7, 
+      nombre: 'Rosca de dulce de leche', 
+      descripcion: 'Rosca rellena con dulce de leche. Ideal para la merienda.', 
+      imagen: '/uploads/roscadulcedeleche.jpg', 
+      precio: 10.0, 
+      insumos: [
+        { id: 2, cantidad: 0.5 }
+      ]
+    },
+    { 
+      id: 8, 
+      nombre: 'Sanguche de jamón y queso', 
+      descripcion: 'Sanguche de pan de migas, con jamón y queso.', 
+      imagen: '/uploads/sanguchito.jpg', 
+      precio: 10.0, 
+      insumos: [
+        { id: 2, cantidad: 0.5 }
+      ]
+    },
+    {
+      id: 9,
+      nombre: 'Croissant',
+      descripcion: 'Croissant como el francés, pero mejor.',
+      imagen: '/uploads/croissant.jpg',
+      precio: 10.0,
+      insumos: [
+        { id: 1, cantidad: 1.2 }, // 2 Kg de Harina
+        { id: 2, cantidad: 0.2 },
+        { id: 3, cantidad: 1 }
       ]
     }
   ];
