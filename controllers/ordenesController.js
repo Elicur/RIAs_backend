@@ -20,6 +20,17 @@ let ordenes = [
     estado: 'En Preparacion',
     cliente: 'user@example.com'
   },
+  {
+    id: 3,
+    productos: [  
+      { id: '1', cantidad: 1 },
+      { id: '3', cantidad: 2 }
+    ],
+    fecha: '2024-06-25',
+    cobro: 110,
+    estado: 'Listo',
+    cliente: 'user@example.com'
+  }
   ];
   
   exports.getOrdenes = (req, res) => {
