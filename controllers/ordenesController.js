@@ -6,7 +6,7 @@ let ordenes = [
       { id: 8, cantidad: 5 }
     ],
     fecha: '2024-06-25',
-    cobro: 65,
+    cobro: 60,
     estado: 'Listo',
     cliente: 'user@example.com'
   },
