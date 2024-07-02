@@ -78,17 +78,24 @@ let ordenes = [
   };
 
   exports.deleteProductoFromOrdenes = (req, res) => {
-    const { idProducto } = req.params;
+    const { idProd, costo } = req.body;
   
-    // Eliminar el producto de todas las órdenes
-    ordenes = ordenes.map(orden => ({
-      ...orden,
-      productos: orden.productos.filter(producto => producto.id != idProducto)
-    }));
+    // Eliminar el producto de todas las órdenes y actualizar el costo total
+    ordenes = ordenes.map(orden => {
+      const nuevosProductos = orden.productos.filter(producto => producto.id != idProd);
+      const cantidadEliminada = orden.productos.find(producto => producto.id == idProd)?.cantidad || 0;
+      const nuevoCobro = orden.cobro - (costo * cantidadEliminada);
+      
+      return {
+        ...orden,
+        productos: nuevosProductos,
+        cobro: nuevoCobro
+      };
+    });
   
     // Eliminar las órdenes que se quedan sin productos
     ordenes = ordenes.filter(orden => orden.productos.length > 0);
   
-    res.json({ message: `Producto con id ${idProducto} eliminado de todas las ordenes` });
-    console.log(`Producto con id ${idProducto} eliminado de todas las ordenes`);
+    res.json({ message: `Producto con id ${idProd} eliminado de todas las ordenes` });
+    console.log(`Producto con id ${idProd} eliminado de todas las ordenes`);
   };
