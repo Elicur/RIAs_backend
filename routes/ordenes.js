@@ -63,4 +63,17 @@ router.delete('/producto', verifyToken, isAdmin, (req, res) => {
   ordenesController.deleteProductoFromOrdenes(req, res);
 });
 
+router.delete('/:id', verifyToken, isAdmin, (req, res) => {
+  /* #swagger.summary = 'Actualiza una orden existente' */
+  /* #swagger.tags = ['Ordenes'] */
+  /* #swagger.security = [{ "BearerAuth": [] }] */
+  /* #swagger.parameters['id'] = { description: 'ID de la orden', type: 'integer', required: true } */
+  /* #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Update orden.',
+        schema: { $ref: '#/definitions/Orden' }
+    } */
+  ordenesController.deleteOrden(req, res);
+});
+
 module.exports = router;

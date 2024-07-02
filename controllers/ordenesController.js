@@ -99,3 +99,15 @@ let ordenes = [
     res.json({ message: `Producto con id ${idProd} eliminado de todas las ordenes` });
     console.log(`Producto con id ${idProd} eliminado de todas las ordenes`);
   };
+
+  exports.deleteOrden = (req, res) => {
+    const { id } = req.params;
+    const ordenIndex = ordenes.findIndex(o => o.id == id);
+    if (ordenIndex !== -1) {
+      ordenes.splice(ordenIndex, 1);
+      res.json({ message: `Orden con id ${id} eliminada` });
+    } else {
+      res.status(404).json({ message: 'Orden no encontrada' });
+    }
+  };
+  

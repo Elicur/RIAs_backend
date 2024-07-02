@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const insumosController = require('../controllers/insumosController');
-const { verifyToken, isAdmin } = require('../middleware/auth');
+const { verifyToken, isAdmin, isPanadero } = require('../middleware/auth');
 
 router.get('/', verifyToken, isAdmin, (req, res) => {
     /* #swagger.summary = 'Obtiene la lista de insumos' */
@@ -9,7 +9,7 @@ router.get('/', verifyToken, isAdmin, (req, res) => {
     insumosController.getInsumos(req, res);
 });
 
-router.get('/:id', verifyToken, isAdmin, (req, res) => {
+router.get('/:id', verifyToken, isPanadero, (req, res) => {
     /* #swagger.summary = 'Obtiene un insumo por ID' */
     /* #swagger.tags = ['Insumos'] */
     insumosController.getInsumoById(req, res);
