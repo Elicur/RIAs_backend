@@ -13,8 +13,8 @@ let ordenes = [
   {
     id: 2,
     productos: [
-      { id: 5, cantidad: 2 },
-      { id: 7, cantidad: 2 }
+      { id: 5, cantidad: 1 },
+      { id: 7, cantidad: 1 }
     ],
     fecha: '2024-07-23',
     cobro: 94,

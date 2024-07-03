@@ -12,7 +12,6 @@ let productos = [
       precio: 10.0, 
       insumos: [
         { id: 1, cantidad: 1 },
-        { id: 4, cantidad: 0.02 },
         { id: 5, cantidad: 0.2 },
         { id: 6, cantidad: 2 },
         { id: 11, cantidad: 0.01 }
@@ -51,7 +50,6 @@ let productos = [
       insumos: [
         { id: 1, cantidad: 1.5 },
         { id: 4, cantidad: 0.03 },
-        { id: 5, cantidad: 0.4 },
         { id: 6, cantidad: 2 },
         { id: 11, cantidad: 0.01 }
       ]
@@ -64,10 +62,8 @@ let productos = [
       precio: 25.0, 
       insumos: [
         { id: 1, cantidad: 1 },
-        { id: 3, cantidad: 0.5 },
         { id: 4, cantidad: 0.03 },
         { id: 6, cantidad: 3 },
-        { id: 11, cantidad: 0.02 },
         { id: 13, cantidad: 0.2 },
         { id: 14, cantidad: 0.2 }
       ]
@@ -80,10 +76,8 @@ let productos = [
       precio: 20.0, 
       insumos: [
         { id: 1, cantidad: 1 },
-        { id: 3, cantidad: 0.5 },
         { id: 4, cantidad: 0.03 },
         { id: 6, cantidad: 3 },
-        { id: 11, cantidad: 0.02 },
         { id: 15, cantidad: 0.15 }
       ]
     },
@@ -96,10 +90,8 @@ let productos = [
       insumos: [
         { id: 1, cantidad: 1 },
         { id: 2, cantidad: 0.4 },
-        { id: 3, cantidad: 0.5 },
-        { id: 4, cantidad: 0.03 },
         { id: 6, cantidad: 3 },
-        { id: 11, cantidad: 0.02 },
+        { id: 12, cantidad: 1 },
         { id: 16, cantidad: 0.1 }
       ]
     },
@@ -113,7 +105,8 @@ let productos = [
         { id: 1, cantidad: 0.5 },
         { id: 4, cantidad: 0.02 },
         { id: 5, cantidad: 0.2 },
-        { id: 6, cantidad: 1 },
+        { id: 13, cantidad: 0.1 },
+        { id: 14, cantidad: 0.1 }
       ]
     },
     {
@@ -125,9 +118,7 @@ let productos = [
       insumos: [
         { id: 1, cantidad: 0.6 },
         { id: 2, cantidad: 0.4 },
-        { id: 3, cantidad: 0.5 },
         { id: 5, cantidad: 0.2 },
-        { id: 8, cantidad: 0.02 },
         { id: 10, cantidad: 0.1 },
         { id: 16, cantidad: 0.1 }
       ]
